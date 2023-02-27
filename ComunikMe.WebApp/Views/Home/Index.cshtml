@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Início";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem vindo</h1>
+    @if(!ComunikiMe.WebApp.Controllers.UserController.IsLogged)
+    {
+        <p>
+            Essa é a Loja do Baldasso.
+            Seja bem vindo e por favor <a class="nav-link link-primary" asp-area="" asp-controller="User" asp-action="Login">Faça Login</a>
+            ou <a class="nav-link link-primary" asp-area="" asp-controller="User" asp-action="Register">Registre-se</a>
+        </p>
+    }
+    else
+    {
+        <p>
+            Seja bem vindo @ComunikiMe.WebApp.Controllers.UserController.Username!
+
+            Acesse:
+            <a class="nav-link link-primary" asp-area="" asp-controller="Produtos" asp-action="Index">Lista de Produtos</a>
+        </p>
+    }

@@ -1,0 +1,58 @@
+﻿@using ComunikiMe.WebApp.Controllers;
+@model IEnumerable<ComunikiMe.Domain.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produtos</h1>
+@if(UserController.IsAdmin)
+{
+    <p>
+        <a asp-action="Create">Criar Novo</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estoque)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                @Html.ActionLink("Detalhes", "Details", new { id=item.Id }) |
+            @if(UserController.IsLogged && UserController.IsAdmin)
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+            else if(UserController.IsLogged)
+                @Html.ActionLink("Comprar", "Comprar", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
