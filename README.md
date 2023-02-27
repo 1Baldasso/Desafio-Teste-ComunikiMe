@@ -13,6 +13,7 @@
 - Visual Studio
 - SQL Server
 
+### Passos
 1 - Crie uma pastar para receber o projeto.
 
 2 - Abra o terminal na pasta.
